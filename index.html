@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E-Perpus GIVINO – Politeknik Givino Nusantara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b3d5c;--blue:#1b7fb3;--sky:#34a6d6;--bg:#f3f8fb;--ink:#0d2233;--mut:#5b7285;--line:#dce8ef;--ok:#138a5b;--warn:#c27a0a;--bad:#c0392b}
+*{box-sizing:border-box;margin:0}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;min-height:100vh}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;line-height:1.15}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:8px 5vw;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer;margin-right:auto}
+.brand img{height:46px;width:46px;object-fit:contain;mix-blend-mode:multiply}
+.brand b{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--navy);display:block;line-height:1.1}
+.brand small{color:var(--mut);font-size:.72rem}
+nav{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.btn{padding:10px 18px;border-radius:12px;font-weight:600;background:var(--navy);color:#fff;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,61,92,.25)}
+.btn.ghost{background:transparent;color:var(--navy)}.btn.ghost:hover{background:#e6f1f7;box-shadow:none}
+.btn.sm{padding:6px 12px;font-size:.82rem;border-radius:9px}
+.btn.ok{background:var(--ok)}.btn.bad{background:var(--bad)}.btn[disabled]{opacity:.45;pointer-events:none}
+main{padding-bottom:60px}
+.wrap{padding:0 5vw;max-width:1280px;margin:auto}
+/* HERO */
+.hero{background:radial-gradient(1200px 500px at 80% 0,#1b7fb3 0,transparent 60%),linear-gradient(160deg,#0b3d5c,#06263b);color:#fff;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:center;padding-top:48px;padding-bottom:56px}
+.hero h1{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:14px}
+.hero p{color:#bcdcec;max-width:48ch;margin-bottom:24px}
+.hero .btn{background:#fff;color:var(--navy)}
+.scene{perspective:900px;height:340px;display:grid;place-items:center;position:relative}
+.cube{width:160px;height:220px;position:relative;transform-style:preserve-3d;animation:spin 16s linear infinite}
+@keyframes spin{from{transform:rotateX(-14deg) rotateY(0)}to{transform:rotateX(-14deg) rotateY(360deg)}}
+.cube>div{position:absolute;display:grid;place-items:center;text-align:center;font-family:'Fraunces',serif}
+.cf,.cb{width:160px;height:220px;background:linear-gradient(145deg,#34a6d6,#0b3d5c);border-radius:4px 10px 10px 4px;font-size:1.25rem;padding:14px;color:#fff;box-shadow:inset 0 0 0 6px rgba(255,255,255,.12)}
+.cf{transform:translateZ(26px)}.cb{transform:translateZ(-26px) rotateY(180deg);background:#0b3d5c}
+.cr,.cl{width:52px;height:220px;left:54px;background:repeating-linear-gradient(0deg,#f6f1e4 0 3px,#e6dec8 3px 4px)}
+.cr{transform:rotateY(90deg) translateZ(80px)}.cl{transform:rotateY(-90deg) translateZ(80px);background:#06263b}
+.ct,.cbm{width:160px;height:52px;top:84px;background:#efe8d4}
+.ct{transform:rotateX(90deg) translateZ(110px)}.cbm{transform:rotateX(-90deg) translateZ(110px)}
+.float{position:absolute;width:54px;height:74px;border-radius:6px;background:linear-gradient(145deg,#34a6d6,#1b7fb3);opacity:.55;animation:fl 6s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px) rotate(12deg)}}
+/* FILTER */
+.bar{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;margin-top:-28px;position:relative;z-index:2;display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;box-shadow:0 14px 40px rgba(11,61,92,.12)}
+input,select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff}
+input:focus,select:focus{border-color:var(--sky);outline:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:22px;padding:30px 0}
+.card{perspective:700px}
+.card .in{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .2s,box-shadow .2s;height:100%;display:flex;flex-direction:column;gap:6px}
+.card:hover .in{box-shadow:0 18px 36px rgba(11,61,92,.16)}
+.cover{height:170px;border-radius:4px 12px 12px 4px;padding:16px 14px 14px 22px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:6px 8px 16px rgba(11,61,92,.28);margin-bottom:6px}
+.cover:before{content:"";position:absolute;inset:0 auto 0 0;width:10px;background:rgba(0,0,0,.25);border-radius:4px 0 0 4px}
+.cover b{font-family:'Fraunces',serif;font-size:1.02rem;line-height:1.2}
+.cover span{font-size:.72rem;opacity:.85}
+.tag{display:inline-block;background:#e6f1f7;color:var(--navy);padding:2px 9px;border-radius:99px;font-size:.72rem;font-weight:600;margin:0 4px 4px 0}
+.stok{font-size:.8rem;color:var(--mut)}
+.card .btn{margin-top:auto}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:50px 0}
+/* PANELS */
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:18px}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:22px 0 0}
+.tabs button{padding:10px 16px;border-radius:99px;background:#fff;border:1px solid var(--line);font-weight:600;white-space:nowrap}
+.tabs .on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.stat{background:linear-gradient(145deg,#fff,#eaf4fa);border:1px solid var(--line);border-radius:16px;padding:16px}
+.stat b{font-family:'Fraunces',serif;font-size:2rem;color:var(--navy);display:block}
+.stat span{color:var(--mut);font-size:.85rem}
+.row{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row:last-child{border:0}.row>div:first-child{flex:1;min-width:180px}
+.chip{padding:3px 11px;border-radius:99px;font-size:.75rem;font-weight:700;background:#e6f1f7;color:var(--navy)}
+.Menunggu{background:#fdf0d5;color:var(--warn)}.Disetujui{background:#dcf3e8;color:var(--ok)}.Ditolak{background:#fbe0dc;color:var(--bad)}.Dikembalikan{background:#e8e8ef;color:#555}
+.bars div{display:grid;grid-template-columns:110px 1fr 30px;gap:10px;align-items:center;margin:8px 0;font-size:.85rem}
+.bars i{display:block;height:12px;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--navy));width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+form.f{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.pw{position:relative}.pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;padding:8px;font-size:1.05rem}
+/* MODAL */
+#modal{position:fixed;inset:0;background:rgba(6,38,59,.6);backdrop-filter:blur(5px);display:none;place-items:center;z-index:50;padding:16px}
+#modal.on{display:grid}
+.box{background:#fff;border-radius:22px;padding:26px;width:min(440px,100%);max-height:92vh;overflow:auto;animation:pop .35s cubic-bezier(.2,1.2,.3,1)}
+@keyframes pop{from{transform:scale(.85) rotateX(20deg);opacity:0}}
+.box h2{margin-bottom:6px}.box p.s{color:var(--mut);font-size:.9rem;margin-bottom:14px}
+.box label{display:block;font-size:.82rem;font-weight:600;margin:10px 0 4px}
+.sw{display:flex;background:var(--bg);border-radius:12px;padding:4px;margin-bottom:8px}
+.sw button{flex:1;padding:9px;border-radius:9px;background:none;font-weight:600}.sw .on{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:14px;z-index:60;transition:transform .3s;max-width:90vw}
+#toast.on{transform:translate(-50%,0)}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:30px 5vw}
+@media(max-width:800px){.hero .wrap{grid-template-columns:1fr}.scene{height:270px;transform:scale(.8)}.bar{grid-template-columns:1fr}.brand small{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand" onclick="go('home')"><img src="logo.jpg" alt="Logo Givino"><div><b>E-Perpus GIVINO</b><small>Politeknik Givino Nusantara</small></div></div>
+  <nav id="nav"></nav>
+</header>
+<main id="v"></main>
+<footer>© <span id="yr"></span> Politeknik Givino Nusantara · Yayasan Givino Nusantara</footer>
+<div id="modal"></div><div id="toast"></div>
+
+<script>
+// ====== GANTI DENGAN URL WEB APP APPS SCRIPT ANDA ======
+const API = 'https://script.google.com/macros/s/AKfycbxuU0ueGiNLFOskQB_Wg4sdhb__POZdIFt9LCqZGrKzLcXMbGy0fJyQTpx6oxCMuZJ4/exec';
+// =======================================================
+const DEMO = API.startsWith('PASTE');
+const SAMPLE = [
+['Pemrograman Web Modern','Rina Kusuma','Teknologi','Teknik Informatika',2023,5,3],
+['Basis Data Lanjutan','Budi Santoso','Teknologi','Teknik Informatika',2022,4,4],
+['Jaringan Komputer','Agus Prasetyo','Teknologi','Teknik Informatika',2021,6,2],
+['Kecerdasan Buatan Dasar','Maya Anggraini','Teknologi','Teknik Informatika',2024,3,3],
+['Akuntansi Keuangan','Dewi Lestari','Ekonomi','Akuntansi',2021,6,5],
+['Perpajakan Indonesia','Yusuf Hakim','Ekonomi','Akuntansi',2022,4,1],
+['Manajemen Strategis','Andi Wijaya','Bisnis','Manajemen Bisnis',2020,3,3],
+['Pemasaran Digital','Laras Permata','Bisnis','Manajemen Bisnis',2023,5,4],
+['Dasar Termodinamika','Hendra Putra','Teknik','Teknik Mesin',2019,2,0],
+['Mekanika Fluida','Rudi Hartono','Teknik','Teknik Mesin',2020,3,2],
+['Rangkaian Listrik','Fajar Nugroho','Teknik','Teknik Elektro',2021,4,4],
+['Metodologi Penelitian','Siti Aminah','Umum','Semua Jurusan',2022,8,7]
+].map((b,i)=>({id:'demo'+i,judul:b[0],penulis:b[1],kategori:b[2],jurusan:b[3],tahun:b[4],total:b[5],stok:b[6]}));
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let S = { u: JSON.parse(localStorage.getItem('u') || 'null'), t: localStorage.getItem('t') || '', books: [], view: 'home', tab: 'stat', q: '', kat: '', jur: '' };
+$('#yr').textContent = new Date().getFullYear();
+
+async function api(action, d = {}) {
+  try {
+    const r = await fetch(API, { method: 'POST', body: JSON.stringify({ action, token: S.t, ...d }) });
+    const j = await r.json(); if (!j.ok) throw new Error(j.error); return j.data;
+  } catch (e) { toast(e.message === 'Failed to fetch' ? 'Tidak dapat terhubung ke server' : e.message); throw e; }
+}
+function toast(m) { const t = $('#toast'); t.textContent = m; t.className = 'on'; clearTimeout(t._t); t._t = setTimeout(() => t.className = '', 3200); }
+function modal(h, close = true) { const m = $('#modal'); m.innerHTML = `<div class="box">${h}</div>`; m.className = 'on'; m.onclick = e => { if (close && e.target === m) shut(); }; }
+function shut() { $('#modal').className = ''; }
+const pw = (id, lbl = 'Password') => `<label>${lbl}</label><div class="pw"><input id="${id}" type="password" autocomplete="current-password" required><button type="button" aria-label="Lihat password" onclick="const i=$('#${id}');i.type=i.type=='password'?'text':'password'">👁</button></div>`;
+const hue = s => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+const isAdm = () => S.u && S.u.role === 'admin';
+
+function save(r) { S.t = r.token; S.u = r.user; localStorage.setItem('t', S.t); localStorage.setItem('u', JSON.stringify(S.u)); }
+function logout() { S.t = ''; S.u = null; localStorage.clear(); go('home'); }
+
+function navBar() {
+  $('#nav').innerHTML = !S.u ? `<button class="btn ghost" onclick="auth('login')">Masuk</button><button class="btn" onclick="auth('register')">Daftar</button>`
+    : `<button class="btn ghost" onclick="go('home')">Katalog</button><button class="btn ghost" onclick="go('dash')">${isAdm() ? 'Dashboard Admin' : 'Pinjaman Saya'}</button><button class="btn" onclick="logout()">Keluar (${esc(S.u.nama.split(' ')[0])})</button>`;
+}
+function go(v) { S.view = v; navBar(); scrollTo(0, 0); ({ home, dash })[v](); }
+
+// ---------- AUTH ----------
+function auth(mode = 'login', after) {
+  const reg = mode === 'register';
+  modal(`<div class="sw"><button class="${reg ? '' : 'on'}" onclick="auth('login','${after || ''}')">Masuk</button><button class="${reg ? 'on' : ''}" onclick="auth('register','${after || ''}')">Daftar</button></div>
+  <h2>${reg ? 'Buat akun anggota' : 'Selamat datang kembali'}</h2><p class="s">${reg ? 'Akun diperlukan untuk mengajukan peminjaman buku.' : 'Masuk untuk meminjam buku atau mengelola perpustakaan.'}</p>
+  <form onsubmit="event.preventDefault();doAuth('${mode}','${after || ''}')">
+  ${reg ? '<label>Nama lengkap</label><input id="a_n" required><label>NIM / NIP</label><input id="a_m" required>' : ''}
+  <label>Email</label><input id="a_e" type="email" required>${pw('a_p')}
+  <button class="btn" style="width:100%;margin-top:18px">${reg ? 'Daftar sekarang' : 'Masuk'}</button></form>`);
+}
+async function doAuth(mode, after) {
+  const d = { email: $('#a_e').value, password: $('#a_p').value };
+  if (mode === 'register') { d.nama = $('#a_n').value; d.nim = $('#a_m').value; }
+  const r = await api(mode, d); save(r); shut(); toast('Halo, ' + r.user.nama + '!');
+  if (isAdm() && !S.u.passSet) return forcePw();
+  after ? (go('home'), borrow(after)) : go(isAdm() ? 'dash' : 'home');
+}
+function forcePw() {
+  modal(`<h2>Atur password admin</h2><p class="s">Demi keamanan, password admin hanya dapat diatur <b>satu kali</b> dan tidak bisa diubah lagi. Simpan baik-baik.</p>
+  <form onsubmit="event.preventDefault();setPw()">${pw('n_p', 'Password baru (min. 6 karakter)')}<button class="btn" style="width:100%;margin-top:18px">Simpan permanen</button></form>`, false);
+}
+async function setPw() { await api('setPassword', { password: $('#n_p').value }); S.u.passSet = true; localStorage.setItem('u', JSON.stringify(S.u)); shut(); toast('Password tersimpan'); go('dash'); }
+
+// ---------- HOME / KATALOG ----------
+async function home() {
+  $('#v').innerHTML = `<section class="hero"><div class="wrap"><div><h1>Perpustakaan digital kampus Givino.</h1><p>Cari buku berdasarkan kategori dan jurusan, ajukan peminjaman dari mana saja, dan pantau statusnya langsung dari ponsel Anda.</p><button class="btn" onclick="$('#q').focus();$('#q').scrollIntoView({behavior:'smooth',block:'center'})">Cari buku</button></div>
+  <div class="scene"><div class="float" style="left:6%;top:12%"></div><div class="float" style="right:8%;bottom:10%;animation-delay:-3s"></div>
+  <div class="cube"><div class="cf">E-Perpus<br>GIVINO</div><div class="cb"></div><div class="cr"></div><div class="cl"></div><div class="ct"></div><div class="cbm"></div></div></div></div></section>
+  <div class="wrap"><div class="bar"><input id="q" placeholder="Cari judul atau penulis…" oninput="S.q=this.value;grid()" value="${esc(S.q)}"><select id="k" onchange="S.kat=this.value;grid()"></select><select id="j" onchange="S.jur=this.value;grid()"></select></div><div id="demo"></div><div class="grid" id="g"><p class="empty">Memuat buku…</p></div></div>`;
+  let demo = DEMO;
+  if (!DEMO) { try { S.books = await api('books'); } catch { demo = true; } }
+  if (demo) S.books = SAMPLE;
+  if (demo) $('#demo').innerHTML = '<p class="s" style="margin-top:14px;color:var(--mut);font-size:.85rem">Menampilkan contoh buku. Data asli tampil setelah URL API Apps Script dipasang.</p>';
+  const opt = (k, l) => `<option value="">${l}</option>` + [...new Set(S.books.map(b => b[k]))].sort().map(x => `<option ${S[k === 'kategori' ? 'kat' : 'jur'] === x ? 'selected' : ''}>${esc(x)}</option>`).join('');
+  $('#k').innerHTML = opt('kategori', 'Semua kategori'); $('#j').innerHTML = opt('jurusan', 'Semua jurusan'); grid();
+}
+function grid() {
+  const q = S.q.toLowerCase(), L = S.books.filter(b => (!S.kat || b.kategori === S.kat) && (!S.jur || b.jurusan === S.jur) && (b.judul + b.penulis).toLowerCase().includes(q));
+  $('#g').innerHTML = L.length ? L.map(b => { const h = hue(b.judul) % 50 + 190;
+    return `<div class="card"><div class="in"><div class="cover" style="background:linear-gradient(150deg,hsl(${h},70%,45%),hsl(${h + 15},65%,22%))"><b>${esc(b.judul)}</b><span>${esc(b.penulis)} · ${esc(b.tahun)}</span></div>
+    <div><span class="tag">${esc(b.kategori)}</span><span class="tag">${esc(b.jurusan)}</span></div><div class="stok">Tersedia ${b.stok} dari ${b.total}</div>
+    <button class="btn" ${Number(b.stok) < 1 ? 'disabled' : ''} onclick="borrow('${b.id}')">${Number(b.stok) < 1 ? 'Stok habis' : 'Pinjam buku'}</button></div></div>`; }).join('')
+    : '<p class="empty">Tidak ada buku yang cocok. Coba ubah kata kunci atau filter.</p>';
+}
+document.addEventListener('pointermove', e => { const c = e.target.closest && e.target.closest('.card'); if (!c) return; const r = c.getBoundingClientRect(), i = c.firstChild;
+  i.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 14 + 'deg'); i.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -14 + 'deg'); });
+document.addEventListener('pointerout', e => { const c = e.target.closest && e.target.closest('.card'); if (c) { c.firstChild.style.setProperty('--rx', '0deg'); c.firstChild.style.setProperty('--ry', '0deg'); } });
+
+function borrow(id) {
+  if (DEMO) return toast('Mode contoh: pasang URL API agar peminjaman dapat diproses');
+  if (!S.u) return auth('register', id);
+  if (isAdm()) return toast('Akun admin tidak dapat meminjam buku');
+  const b = S.books.find(x => x.id === id);
+  modal(`<h2>Ajukan peminjaman</h2><p class="s">${esc(b.judul)} — ${esc(b.penulis)}</p><label>Lama peminjaman</label><select id="dur"><option value="7">7 hari</option><option value="14">14 hari</option><option value="21">21 hari</option></select>
+  <p class="s" style="margin-top:12px">Pengajuan akan diperiksa admin. Stok berkurang setelah disetujui.</p><button class="btn" style="width:100%" onclick="sendLoan('${id}')">Kirim pengajuan</button>`);
+}
+async function sendLoan(id) { await api('loan', { bookId: id, durasi: $('#dur').value }); shut(); toast('Pengajuan terkirim, tunggu persetujuan admin'); go('dash'); }
+
+// ---------- DASHBOARD ----------
+async function dash() {
+  if (!S.u) return go('home');
+  if (isAdm() && !S.u.passSet) return forcePw();
+  isAdm() ? admin() : userDash();
+}
+const loanRow = (l, act = '') => `<div class="row"><div><b>${esc(l.judul)}</b><br><small style="color:var(--mut)">${isAdm() ? esc(l.nama) + ' (' + esc(l.nim) + ') · ' : ''}Diajukan ${esc(l.tglAjuan)} · ${l.durasi} hari${l.jatuhTempo ? ' · Jatuh tempo ' + esc(l.jatuhTempo) : ''}</small></div><span class="chip ${l.status}">${l.status}</span>${act}</div>`;
+async function userDash() {
+  $('#v').innerHTML = `<div class="wrap"><h2 style="margin-top:34px">Halo, ${esc(S.u.nama)}</h2><div class="panel" id="p">Memuat…</div></div>`;
+  const L = await api('loans');
+  $('#p').innerHTML = `<h3>Riwayat pinjaman</h3>` + (L.length ? L.map(l => loanRow(l)).join('') : '<p class="empty" style="padding:30px 0">Belum ada pinjaman. Buka katalog dan pilih buku pertama Anda.</p>');
+}
+async function admin() {
+  const T = [['stat', 'Statistik'], ['loan', 'Pinjaman'], ['book', 'Buku'], ['adm', 'Admin']];
+  $('#v').innerHTML = `<div class="wrap"><h2 style="margin-top:34px">Dashboard admin</h2><div class="tabs">${T.map(t => `<button class="${S.tab === t[0] ? 'on' : ''}" onclick="S.tab='${t[0]}';admin()">${t[1]}</button>`).join('')}</div><div class="panel" id="p">Memuat…</div></div>`;
+  ({ stat: tStat, loan: tLoan, book: tBook, adm: tAdm })[S.tab]();
+}
+async function tStat() {
+  const s = await api('stats'), mx = Math.max(1, ...Object.values(s.kat));
+  $('#p').innerHTML = `<div class="stats">${[['judul', 'Judul buku'], ['total', 'Total eksemplar'], ['stok', 'Stok tersedia'], ['dipinjam', 'Sedang dipinjam'], ['menunggu', 'Menunggu persetujuan'], ['anggota', 'Anggota']].map(x => `<div class="stat"><b>${s[x[0]]}</b><span>${x[1]}</span></div>`).join('')}</div>
+  <h3 style="margin:26px 0 6px">Peminjaman per kategori</h3><div class="bars">${Object.entries(s.kat).map(([k, v]) => `<div><span>${esc(k)}</span><i data-w="${v / mx * 100}"></i><b>${v}</b></div>`).join('') || '<p class="s" style="color:var(--mut)">Belum ada data peminjaman.</p>'}</div>
+  <h3 style="margin:26px 0 6px">Buku terpopuler</h3>${s.top.map(t => `<div class="row"><div>${esc(t[0])}</div><span class="chip">${t[1]}× dipinjam</span></div>`).join('')}`;
+  setTimeout(() => document.querySelectorAll('.bars i').forEach(i => i.style.width = i.dataset.w + '%'), 60);
+}
+async function tLoan() {
+  const L = await api('loans');
+  $('#p').innerHTML = L.length ? L.map(l => loanRow(l, l.status === 'Menunggu' ? `<button class="btn sm ok" onclick="st('${l.id}','Disetujui')">Setujui</button><button class="btn sm bad" onclick="st('${l.id}','Ditolak')">Tolak</button>` : l.status === 'Disetujui' ? `<button class="btn sm" onclick="st('${l.id}','Dikembalikan')">Tandai dikembalikan</button>` : '')).join('') : '<p class="empty">Belum ada pengajuan pinjaman.</p>';
+}
+async function st(id, status) { await api('setStatus', { id, status }); toast('Status: ' + status); tLoan(); }
+let EB = null;
+async function tBook() {
+  S.books = await api('books'); EB = null;
+  $('#p').innerHTML = `<h3 id="ft">Tambah buku</h3><form class="f" onsubmit="event.preventDefault();saveBook()"><input id="b_j" placeholder="Judul" required><input id="b_p" placeholder="Penulis" required><input id="b_k" placeholder="Kategori" required><input id="b_u" placeholder="Jurusan" required><input id="b_t" type="number" placeholder="Tahun" required><input id="b_s" type="number" min="0" placeholder="Total eksemplar" required><button class="btn" id="bs">Simpan buku</button><button type="button" class="btn ghost" onclick="tBook()">Batal</button></form>
+  <h3 style="margin-top:26px">Daftar buku (${S.books.length})</h3>${S.books.map(b => `<div class="row"><div><b>${esc(b.judul)}</b><br><small style="color:var(--mut)">${esc(b.penulis)} · ${esc(b.kategori)} · ${esc(b.jurusan)} · stok ${b.stok}/${b.total}</small></div><button class="btn sm" onclick="editBook('${b.id}')">Edit</button><button class="btn sm bad" onclick="delBook('${b.id}')">Hapus</button></div>`).join('')}`;
+}
+function editBook(id) {
+  const b = S.books.find(x => x.id === id); EB = id;
+  [['j', 'judul'], ['p', 'penulis'], ['k', 'kategori'], ['u', 'jurusan'], ['t', 'tahun'], ['s', 'total']].forEach(([i, k]) => $('#b_' + i).value = b[k]);
+  $('#ft').textContent = 'Edit buku'; $('#bs').textContent = 'Simpan perubahan'; $('#ft').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+async function saveBook() {
+  await api('saveBook', { id: EB || undefined, total: $('#b_s').value, book: { judul: $('#b_j').value, penulis: $('#b_p').value, kategori: $('#b_k').value, jurusan: $('#b_u').value, tahun: $('#b_t').value } });
+  toast(EB ? 'Buku diperbarui' : 'Buku ditambahkan'); tBook();
+}
+async function delBook(id) { if (!confirm('Hapus buku ini dari katalog?')) return; await api('delBook', { id }); toast('Buku dihapus'); tBook(); }
+async function tAdm() {
+  const A = await api('admins');
+  $('#p').innerHTML = `<h3>Tambah admin baru</h3><p class="s" style="color:var(--mut);margin-bottom:10px">Berikan password sementara. Admin baru akan diminta membuat password permanen (satu kali) saat pertama masuk.</p>
+  <form class="f" onsubmit="event.preventDefault();addAdm()"><input id="m_n" placeholder="Nama" required><input id="m_e" type="email" placeholder="Email" required><input id="m_p" type="text" placeholder="Password sementara" required><button class="btn">Tambah admin</button></form>
+  <h3 style="margin-top:26px">Daftar admin</h3>${A.map(a => `<div class="row"><div><b>${esc(a.nama)}</b><br><small style="color:var(--mut)">${esc(a.email)}</small></div><span class="chip ${a.passSet ? 'Disetujui' : 'Menunggu'}">${a.passSet ? 'Aktif' : 'Belum atur password'}</span></div>`).join('')}`;
+}
+async function addAdm() { await api('addAdmin', { nama: $('#m_n').value, email: $('#m_e').value, password: $('#m_p').value }); toast('Admin ditambahkan'); tAdm(); }
+
+go('home');
+if (isAdm() && !S.u.passSet) forcePw();
+</script>
+</body>
+</html>
